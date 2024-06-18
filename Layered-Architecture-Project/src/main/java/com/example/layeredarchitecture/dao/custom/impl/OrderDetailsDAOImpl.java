@@ -16,7 +16,7 @@ public class OrderDetailsDAOImpl implements OrderDetailsDAO {
     }
 
     @Override
-    public boolean add(OrderDetailDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean add(String dto) throws SQLException, ClassNotFoundException {
         return false;
     }
 

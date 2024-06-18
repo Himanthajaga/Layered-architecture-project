@@ -24,7 +24,7 @@ public class ItemDAOImpl implements ItemDAO {
         return SqlUtil.executes("DELETE FROM Item WHERE code=?", code);
     }
 
-    public boolean add(ItemDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean add(String dto) throws SQLException, ClassNotFoundException {
         return SqlUtil.executes("INSERT INTO Item (code, description, unitPrice, qtyOnHand) VALUES (?,?,?,?)", dto.getCode(), dto.getDescription(), dto.getUnitPrice(), dto.getQtyOnHand());
     }
 
