@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class CustomerDAOImpl implements CustomerDAO{
 
-    public ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException {
+    public ArrayList<CustomerDTO> getAll() throws SQLException, ClassNotFoundException {
         ArrayList<CustomerDTO> allCustomers = new ArrayList<>();
         ResultSet rst = SqlUtil.executes("SELECT * FROM Customer");
 
@@ -21,15 +21,15 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
 
-    public boolean addCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean add(CustomerDTO dto) throws SQLException, ClassNotFoundException {
        return SqlUtil.executes("INSERT INTO Customer (id,name, address) VALUES (?,?,?)",dto.getId(), dto.getName(), dto.getAddress());
     }
 
-    public boolean updateCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean update(CustomerDTO dto) throws SQLException, ClassNotFoundException {
        return SqlUtil.executes("UPDATE Customer SET name=?, address=? WHERE id=?",dto.getName(), dto.getAddress(), dto.getId());
     }
 
-    public boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
+    public boolean exist(String id) throws SQLException, ClassNotFoundException {
        ResultSet rst =SqlUtil.executes("SELECT id FROM Customer WHERE id=?",id);
          return rst.next();
     }
@@ -47,15 +47,35 @@ public class CustomerDAOImpl implements CustomerDAO{
     }
 
 
-    public boolean deleteCustomer(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
       return SqlUtil.executes("DELETE FROM Customer WHERE id=?",id);
     }
 
 
-    public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
+    public CustomerDTO search(String id) throws SQLException, ClassNotFoundException {
         ResultSet rst =SqlUtil.executes("SELECT * FROM Customer WHERE id=?",id);
         rst.next();
         return new CustomerDTO(id + "", rst.getString("name"), rst.getString("address"));
+    }
+
+    @Override
+    public String generateOID() throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public boolean existOrder(String orderId) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean saveOrder(CustomerDTO dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean saveOrderDetails(CustomerDTO dto) throws SQLException, ClassNotFoundException {
+        return false;
     }
 
 }
