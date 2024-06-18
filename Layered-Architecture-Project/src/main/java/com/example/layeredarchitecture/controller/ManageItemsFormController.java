@@ -40,6 +40,9 @@ public class ManageItemsFormController {
 
     ItemDAO itemDAO = new ItemDAOImpl();
 
+    public ManageItemsFormController() throws SQLException, ClassNotFoundException {
+    }
+
     public void initialize() {
         tblItems.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
         tblItems.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("description"));

@@ -57,6 +57,10 @@ public class PlaceOrderFormController {
     ItemDAO itemDAO = new ItemDAOImpl();
     OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
 
+    public PlaceOrderFormController() throws SQLException, ClassNotFoundException {
+    }
+
+
     public void initialize() throws SQLException, ClassNotFoundException {
 
         tblOrderDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
