@@ -1,17 +1,19 @@
-package com.example.layeredarchitecture.dao;
+package com.example.layeredarchitecture.dao.custom.impl;
 
+import com.example.layeredarchitecture.dao.SqlUtil;
+import com.example.layeredarchitecture.dao.custom.ItemDAO;
 import com.example.layeredarchitecture.model.ItemDTO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ItemDAOImpl implements ItemDAO{
+public class ItemDAOImpl implements ItemDAO {
 
 
     public ArrayList<ItemDTO> getAll() throws SQLException, ClassNotFoundException {
         ArrayList<ItemDTO> allItems = new ArrayList<>();
-        ResultSet rst =SqlUtil.executes("SELECT * FROM Item");
+        ResultSet rst = SqlUtil.executes("SELECT * FROM Item");
         while (rst.next()) {
             allItems.add(new ItemDTO(rst.getString("code"), rst.getString("description"), rst.getBigDecimal("unitPrice"), rst.getInt("qtyOnHand")));
         }

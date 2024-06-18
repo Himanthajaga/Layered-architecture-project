@@ -1,6 +1,8 @@
-package com.example.layeredarchitecture.dao;
+package com.example.layeredarchitecture.dao.custom.impl;
 
 
+import com.example.layeredarchitecture.dao.SqlUtil;
+import com.example.layeredarchitecture.dao.custom.OrderDAO;
 import com.example.layeredarchitecture.model.OrderDTO;
 
 import java.sql.Date;
@@ -8,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class OrderDAOImpl implements OrderDAO{
+public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public ArrayList<OrderDTO> getAll() throws SQLException, ClassNotFoundException {
