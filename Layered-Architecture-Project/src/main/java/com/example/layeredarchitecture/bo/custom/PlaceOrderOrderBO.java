@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface PurchaseOrderBO {
+public interface PlaceOrderOrderBO {
     public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException ;
 
     public ItemDTO searchItem(String code) throws SQLException, ClassNotFoundException ;

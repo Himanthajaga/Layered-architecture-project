@@ -1,7 +1,7 @@
 package com.example.layeredarchitecture.bo.custom.impl;
 
 
-import com.example.layeredarchitecture.bo.custom.PurchaseOrderBO;
+import com.example.layeredarchitecture.bo.custom.PlaceOrderOrderBO;
 import com.example.layeredarchitecture.dao.custom.CustomerDAO;
 import com.example.layeredarchitecture.dao.custom.ItemDAO;
 import com.example.layeredarchitecture.dao.custom.OrderDAO;
@@ -22,12 +22,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PurchaseOrderBOImpl implements PurchaseOrderBO {
+public class PlaceOrderBOImpl implements PlaceOrderOrderBO {
+    //property injection
     CustomerDAO customerDAO = new CustomerDAOImpl();
     ItemDAO itemDAO = new ItemDAOImpl();
     OrderDAO orderDAO = new OrderDAOImpl();
     OrderDetailsDAO orderDetailsDAO = new OrderDetailsDAOImpl();
-    PurchaseOrderBOImpl purchaseOrderBO = new PurchaseOrderBOImpl();
+
     @Override
     public CustomerDTO searchCustomer(String id) throws SQLException, ClassNotFoundException {
         return customerDAO.search(id);
@@ -126,6 +127,7 @@ public class PurchaseOrderBOImpl implements PurchaseOrderBO {
     @Override
     public ItemDTO findItem(String code) {
         try {
+            PlaceOrderBOImpl purchaseOrderBO = new PlaceOrderBOImpl();
             return purchaseOrderBO.searchItem(code);
         } catch (SQLException e) {
             throw new RuntimeException("Failed to find the Item " + code, e);
