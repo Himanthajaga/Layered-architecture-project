@@ -1,4 +1,4 @@
-package com.example.layeredarchitecture.bo.custom.impl;
+package com.example.layeredarchitecture.bo.custom.Impl;
 
 
 import com.example.layeredarchitecture.bo.custom.PlaceOrderOrderBO;

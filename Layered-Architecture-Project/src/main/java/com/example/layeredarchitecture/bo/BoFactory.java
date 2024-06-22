@@ -1,19 +1,20 @@
-package com.example.layeredarchitecture.dao;
+package com.example.layeredarchitecture.bo;
 
+import com.example.layeredarchitecture.dao.DAOFactory;
+import com.example.layeredarchitecture.dao.SuperDAO;
 import com.example.layeredarchitecture.dao.custom.impl.*;
 
-public class DAOFactory {
-    public static DAOFactory daoFactory;
-    private DAOFactory(){
-    }
-    public static DAOFactory getInstance(){
-        return daoFactory==null?daoFactory=new DAOFactory():daoFactory;
-    }
-    public enum DAOTypes {
-        CUSTOMER, ITEM, ORDER, ORDERDETAILS, QUERY;
+public class BoFactory {
+    private static BoFactory boFactory;
+
+    private BoFactory() {
     }
 
-    public SuperDAO getDAO(DAOTypes daoTypes){
+    public static BoFactory getInstance() {
+        return (boFactory == null) ? (boFactory = new BoFactory()) : boFactory;
+    }
+
+    public SuperDAO getDAO(BoFactory.DAOTypes daoTypes){
         switch (daoTypes){
             case CUSTOMER:
                 return new CustomerDAOImpl();
@@ -29,5 +30,4 @@ public class DAOFactory {
                 return null;
         }
     }
-
-}
+    }
