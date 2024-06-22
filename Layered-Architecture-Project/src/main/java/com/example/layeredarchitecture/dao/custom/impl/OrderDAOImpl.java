@@ -1,7 +1,7 @@
 package com.example.layeredarchitecture.dao.custom.impl;
 
 
-import com.example.layeredarchitecture.dao.SqlUtil;
+import com.example.layeredarchitecture.dao.SQLUtil;
 import com.example.layeredarchitecture.dao.custom.OrderDAO;
 import com.example.layeredarchitecture.model.OrderDTO;
 
@@ -18,8 +18,8 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public boolean add(String dto) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean add(OrderDTO dto) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("INSERT INTO `Orders` (oid, date, customerID) VALUES (?,?,?)",dto.getOrderId(), Date.valueOf(dto.getOrderDate()),dto.getCustomerId());
     }
 
     @Override
@@ -29,12 +29,14 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public boolean exist(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        ResultSet rst = SQLUtil.execute("SELECT oid FROM `Orders` WHERE oid=?",id);
+        return rst.next();
     }
 
     @Override
     public String generateNewID() throws SQLException, ClassNotFoundException {
-        return null;
+        ResultSet rst = SQLUtil.execute("SELECT oid FROM `Orders` ORDER BY oid DESC LIMIT 1;");
+        return rst.next() ? String.format("OID-%03d", (Integer.parseInt(rst.getString("oid").replace("OID-", "")) + 1)) : "OID-001";
     }
 
     @Override
@@ -46,25 +48,4 @@ public class OrderDAOImpl implements OrderDAO {
     public OrderDTO search(String id) throws SQLException, ClassNotFoundException {
         return null;
     }
-
-    public String generateOID() throws SQLException, ClassNotFoundException {
-        ResultSet rst = SqlUtil.executes("SELECT oid FROM `Orders` ORDER BY oid DESC LIMIT 1;");
-        return rst.next() ? String.format("OID-%03d", (Integer.parseInt(rst.getString("oid").replace("OID-", "")) + 1)) : "OID-001";
-    }
-
-    public boolean existOrder(String orderId) throws SQLException, ClassNotFoundException {
-      ResultSet rst = SqlUtil.executes("SELECT oid FROM `Orders` WHERE oid=?", orderId);
-      return rst.next();
-    }
-
-    public boolean saveOrder(OrderDTO dto) throws SQLException, ClassNotFoundException {
-       return SqlUtil.executes("INSERT INTO `Orders` (oid, date, customerID) VALUES (?,?,?)", dto.getOrderId(), Date.valueOf(dto.getOrderDate()), dto.getCustomerId());
-    }
-
-    @Override
-    public boolean saveOrderDetails(OrderDTO dto) throws SQLException, ClassNotFoundException {
-        return false;
-    }
-
-
 }
