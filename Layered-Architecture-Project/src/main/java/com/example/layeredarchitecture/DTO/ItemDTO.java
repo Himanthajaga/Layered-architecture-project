@@ -1,4 +1,4 @@
-package com.example.layeredarchitecture.model;
+package com.example.layeredarchitecture.DTO;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

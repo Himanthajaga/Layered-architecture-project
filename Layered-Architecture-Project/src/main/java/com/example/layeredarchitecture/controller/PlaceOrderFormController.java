@@ -1,12 +1,10 @@
 package com.example.layeredarchitecture.controller;
 
 import com.example.layeredarchitecture.bo.BoFactory;
-import com.example.layeredarchitecture.bo.custom.CustomerBO;
 import com.example.layeredarchitecture.bo.custom.PlaceOrderOrderBO;
-import com.example.layeredarchitecture.bo.custom.Impl.PlaceOrderBOImpl;
-import com.example.layeredarchitecture.model.CustomerDTO;
-import com.example.layeredarchitecture.model.ItemDTO;
-import com.example.layeredarchitecture.model.OrderDetailDTO;
+import com.example.layeredarchitecture.DTO.CustomerDTO;
+import com.example.layeredarchitecture.DTO.ItemDTO;
+import com.example.layeredarchitecture.DTO.OrderDetailDTO;
 import com.example.layeredarchitecture.view.tdm.OrderDetailTM;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
